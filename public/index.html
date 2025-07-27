@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Tasks App - Earn Money Through Simple Tasks</title>
+    <meta name="description" content="Complete micro tasks and earn money. Join thousands of users earning through simple tasks like surveys, data entry, and social media activities.">
+    <meta name="keywords" content="micro tasks, earn money online, task completion, surveys, data entry, social media tasks">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Micro Tasks App - Earn Money Through Simple Tasks">
+    <meta property="og:description" content="Complete micro tasks and earn money. Join thousands of users earning through simple tasks.">
+    <meta property="og:image" content="/images/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Micro Tasks App - Earn Money Through Simple Tasks">
+    <meta name="twitter:description" content="Complete micro tasks and earn money. Join thousands of users earning through simple tasks.">
+    <meta name="twitter:image" content="/images/twitter-image.jpg">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <i class="fas fa-tasks brand-icon"></i>
+                    <span class="brand-text">Micro Tasks</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-list">
+                    <!-- Public Menu Items -->
+                    <div class="nav-public">
+                        <a href="#home" class="nav-link active" data-page="home">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                        <a href="#tasks" class="nav-link" data-page="tasks">
+                            <i class="fas fa-tasks"></i> Tasks
+                        </a>
+                        <a href="#plans" class="nav-link" data-page="plans">
+                            <i class="fas fa-crown"></i> Plans
+                        </a>
+                        <a href="#blog" class="nav-link" data-page="blog">
+                            <i class="fas fa-blog"></i> Blog
+                        </a>
+                    </div>
+                    
+                    <!-- Authenticated User Menu -->
+                    <div class="nav-auth" id="nav-auth" style="display: none;">
+                        <a href="#dashboard" class="nav-link" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="#wallet" class="nav-link" data-page="wallet">
+                            <i class="fas fa-wallet"></i> Wallet
+                        </a>
+                        <a href="#referral" class="nav-link" data-page="referral">
+                            <i class="fas fa-users"></i> Referral
+                        </a>
+                        <a href="#profile" class="nav-link" data-page="profile">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        
+                        <!-- Notifications -->
+                        <div class="nav-notifications">
+                            <button class="notification-btn" id="notification-btn">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge" id="notification-badge" style="display: none;">0</span>
+                            </button>
+                            <div class="notification-dropdown" id="notification-dropdown">
+                                <div class="notification-header">
+                                    <h3>Notifications</h3>
+                                    <button class="mark-all-read" id="mark-all-read">Mark all read</button>
+                                </div>
+                                <div class="notification-list" id="notification-list">
+                                    <!-- Notifications will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- User Menu -->
+                        <div class="user-menu">
+                            <button class="user-btn" id="user-btn">
+                                <img src="/images/default-avatar.png" alt="User Avatar" class="user-avatar" id="user-avatar">
+                                <span class="user-name" id="user-name">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="user-dropdown" id="user-dropdown">
+                                <a href="#profile" class="dropdown-link" data-page="profile">
+                                    <i class="fas fa-user"></i> Profile
+                                </a>
+                                <a href="#settings" class="dropdown-link" data-page="settings">
+                                    <i class="fas fa-cog"></i> Settings
+                                </a>
+                                <a href="#kyc" class="dropdown-link" data-page="kyc">
+                                    <i class="fas fa-id-card"></i> KYC Verification
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-link logout-btn" id="logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest Menu -->
+                    <div class="nav-guest" id="nav-guest">
+                        <a href="#login" class="nav-link" data-page="login">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="#register" class="nav-link btn-primary" data-page="register">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Home Page -->
+        <div class="page" id="page-home">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-background">
+                    <div class="hero-particles"></div>
+                </div>
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="hero-title">
+                                Earn Money Through 
+                                <span class="gradient-text">Simple Micro Tasks</span>
+                            </h1>
+                            <p class="hero-description">
+                                Join thousands of users who are earning money by completing simple tasks like surveys, 
+                                data entry, social media activities, and more. Start earning today!
+                            </p>
+                            <div class="hero-stats">
+                                <div class="stat">
+                                    <span class="stat-number">10,000+</span>
+                                    <span class="stat-label">Active Users</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">₹50L+</span>
+                                    <span class="stat-label">Total Paid</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50,000+</span>
+                                    <span class="stat-label">Tasks Completed</span>
+                                </div>
+                            </div>
+                            <div class="hero-actions">
+                                <a href="#register" class="btn btn-primary btn-large" data-page="register">
+                                    <i class="fas fa-rocket"></i> Get Started Free
+                                </a>
+                                <a href="#tasks" class="btn btn-outline btn-large" data-page="tasks">
+                                    <i class="fas fa-tasks"></i> View Tasks
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <img src="/images/hero-illustration.svg" alt="Earn money through tasks" class="hero-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features" id="features">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Why Choose Micro Tasks?</h2>
+                        <p class="section-description">
+                            Discover the benefits of earning through our platform
+                        </p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="feature-title">Flexible Timing</h3>
+                            <p class="feature-description">
+                                Work at your own pace and complete tasks whenever you want. No fixed schedules or commitments.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h3 class="feature-title">Instant Payments</h3>
+                            <p class="feature-description">
+                                Get paid instantly after task completion. Minimum withdrawal of just ₹50 with quick processing.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3 class="feature-title">Variety of Tasks</h3>
+                            <p class="feature-description">
+                                Choose from surveys, data entry, social media tasks, content creation, and much more.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Secure & Safe</h3>
+                            <p class="feature-description">
+                                Your data is protected with bank-level security. KYC verification ensures legitimate users.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Referral Rewards</h3>
+                            <p class="feature-description">
+                                Invite friends and earn bonus points. Get 10% commission on their task completions.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Mobile Friendly</h3>
+                            <p class="feature-description">
+                                Complete tasks on any device. Our platform works perfectly on mobile and desktop.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="how-it-works">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">How It Works</h2>
+                        <p class="section-description">
+                            Start earning in just 4 simple steps
+                        </p>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Register Account</h3>
+                                <p class="step-description">
+                                    Create your free account with email and phone verification. Use a referral code to get bonus points.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Complete Verification</h3>
+                                <p class="step-description">
+                                    Verify your email, phone, and complete KYC for higher limits and premium features.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Complete Tasks</h3>
+                                <p class="step-description">
+                                    Choose from available tasks and complete them to earn points. Get up to 75 tasks per day with premium plans.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Withdraw Earnings</h3>
+                                <p class="step-description">
+                                    Convert points to cash and withdraw to your bank account. Minimum withdrawal just ₹50.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plans Preview Section -->
+            <section class="plans-preview">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Choose Your Plan</h2>
+                        <p class="section-description">
+                            Upgrade your plan to get more tasks and higher earnings
+                        </p>
+                    </div>
+                    <div class="plans-grid" id="plans-preview-grid">
+                        <!-- Plans will be loaded dynamically -->
+                    </div>
+                    <div class="section-footer">
+                        <a href="#plans" class="btn btn-primary" data-page="plans">
+                            <i class="fas fa-crown"></i> View All Plans
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">What Our Users Say</h2>
+                        <p class="section-description">
+                            Real stories from real earners
+                        </p>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <p>"I've been using Micro Tasks for 6 months and earned over ₹25,000. The tasks are simple and payments are always on time."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonial-1.jpg" alt="Priya Sharma" class="author-avatar">
+                                <div class="author-info">
+                                    <h4 class="author-name">Priya Sharma</h4>
+                                    <span class="author-title">Student, Delhi</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <p>"Perfect for earning extra income. I complete tasks during my free time and the referral system helps me earn even more."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonial-2.jpg" alt="Raj Patel" class="author-avatar">
+                                <div class="author-info">
+                                    <h4 class="author-name">Raj Patel</h4>
+                                    <span class="author-title">Working Professional, Mumbai</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <p>"The platform is very user-friendly and secure. KYC verification gives me confidence that this is a legitimate platform."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonial-3.jpg" alt="Sneha Reddy" class="author-avatar">
+                                <div class="author-info">
+                                    <h4 class="author-name">Sneha Reddy</h4>
+                                    <span class="author-title">Homemaker, Bangalore</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Ready to Start Earning?</h2>
+                        <p class="cta-description">
+                            Join thousands of users who are already earning through micro tasks. It's free to start!
+                        </p>
+                        <div class="cta-actions">
+                            <a href="#register" class="btn btn-primary btn-large" data-page="register">
+                                <i class="fas fa-rocket"></i> Start Earning Now
+                            </a>
+                            <p class="cta-note">
+                                <i class="fas fa-gift"></i> Get ₹500 bonus when you join with a referral code!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Other pages will be loaded dynamically -->
+        <div class="page" id="page-login" style="display: none;"></div>
+        <div class="page" id="page-register" style="display: none;"></div>
+        <div class="page" id="page-dashboard" style="display: none;"></div>
+        <div class="page" id="page-tasks" style="display: none;"></div>
+        <div class="page" id="page-wallet" style="display: none;"></div>
+        <div class="page" id="page-plans" style="display: none;"></div>
+        <div class="page" id="page-referral" style="display: none;"></div>
+        <div class="page" id="page-profile" style="display: none;"></div>
+        <div class="page" id="page-kyc" style="display: none;"></div>
+        <div class="page" id="page-blog" style="display: none;"></div>
+        <div class="page" id="page-settings" style="display: none;"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3><i class="fas fa-tasks"></i> Micro Tasks</h3>
+                        <p>Earn money through simple micro tasks. Join thousands of users earning daily.</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-page="home">Home</a></li>
+                        <li><a href="#tasks" data-page="tasks">Tasks</a></li>
+                        <li><a href="#plans" data-page="plans">Plans</a></li>
+                        <li><a href="#blog" data-page="blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Micro Tasks App. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="notification-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notification</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="notification-modal-body">
+                <!-- Notification content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/wallet.js"></script>
+    <script src="/js/tasks.js"></script>
+    <script src="/js/utils.js"></script>
+</body>
+</html>
